@@ -1,7 +1,7 @@
 package algorithm.seven;
 
+import algorithm.MathUtil;
 import com.alibaba.fastjson.JSONObject;
-import com.examplexyy.demo.algorithm.MathUtil;
 
 import java.util.Arrays;
 
