@@ -1,6 +1,6 @@
 package algorithm.swordFingerOffer;
 
-import com.examplexyy.demo.algorithm.bilibili.Node;
+import algorithm.bilibili.Node;
 
 /**
  * @Author: Xiongyy

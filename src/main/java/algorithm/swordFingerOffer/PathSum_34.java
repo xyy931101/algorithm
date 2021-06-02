@@ -1,9 +1,8 @@
 package algorithm.swordFingerOffer;
 
+import algorithm.leetcode.tree.TreeNode;
 import com.alibaba.fastjson.JSONObject;
-import com.examplexyy.demo.algorithm.leetcode.tree.TreeNode;
 
-import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 

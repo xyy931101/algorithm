@@ -1,6 +1,6 @@
 package algorithm.swordFingerOffer;
 
-import com.examplexyy.demo.algorithm.leetcode.tree.TreeNode;
+import algorithm.leetcode.tree.TreeNode;
 
 /**
  * @Author: Xiongyy

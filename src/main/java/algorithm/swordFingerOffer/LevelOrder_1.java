@@ -1,10 +1,12 @@
 package algorithm.swordFingerOffer;
 
+import algorithm.leetcode.tree.TreeNode;
 import com.alibaba.fastjson.JSONObject;
-import com.examplexyy.demo.algorithm.bilibili.Node;
-import com.examplexyy.demo.algorithm.leetcode.tree.TreeNode;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
 
 /**
  * 从上到下打印出二叉树的每个节点，同一层的节点按照从左到右的顺序打印。

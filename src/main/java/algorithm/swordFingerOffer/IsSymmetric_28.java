@@ -1,7 +1,6 @@
 package algorithm.swordFingerOffer;
 
-import com.examplexyy.demo.algorithm.leetcode.tree.IsSymmetric;
-import com.examplexyy.demo.algorithm.leetcode.tree.TreeNode;
+import algorithm.leetcode.tree.TreeNode;
 
 /**
  * 请实现一个函数，用来判断一棵二叉树是不是对称的。如果一棵二叉树和它的镜像一样，那么它是对称的。

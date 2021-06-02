@@ -1,10 +1,5 @@
 package algorithm.leetcode.tree;
 
-import com.examplexyy.demo.algorithm.bilibili.Node;
-
-import java.util.LinkedList;
-import java.util.Queue;
-
 /**
  * 给定一个二叉树，找出其最大深度。
  *
