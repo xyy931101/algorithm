@@ -2,8 +2,6 @@ package algorithm.swordFingerOffer;
 
 import com.alibaba.fastjson.JSONObject;
 
-import java.util.List;
-
 /**
  * 请实现 copyRandomList 函数，复制一个复杂链表。在复杂链表中，每个节点除了有一个 next 指针指向下一个节点，
  * 还有一个 random 指针指向链表中的任意节点或者 null。
@@ -22,7 +20,7 @@ public class CopyRandomList_35 {
 
     public static ListNode copyRandomList(ListNode head) {
         if(head == null){
-            return head;
+            return null;
         }
         ListNode cur = head;
         while (cur != null){
