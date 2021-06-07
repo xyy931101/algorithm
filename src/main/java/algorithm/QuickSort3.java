@@ -50,7 +50,7 @@ public class QuickSort3 {
             }
             nums[left] = nums[right];
         }
-        nums[left] = temp;
+        nums[right] = temp;
         sort(nums, start, left - 1);
         sort(nums, left + 1, end);
     }

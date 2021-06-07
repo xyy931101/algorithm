@@ -1,6 +1,6 @@
 package algorithm.swordFingerOffer;
 
-import com.examplexyy.demo.algorithm.leetcode.tree.TreeNode;
+import algorithm.leetcode.tree.TreeNode;
 
 /**
  * 剑指 Offer 68 - II. 二叉树的最近公共祖先

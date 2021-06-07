@@ -1,7 +1,5 @@
 package algorithm.leetcode.linkedList;
 
-import com.examplexyy.demo.algorithm.swordFingerOffer.ListNode;
-
 import java.util.List;
 
 /**
