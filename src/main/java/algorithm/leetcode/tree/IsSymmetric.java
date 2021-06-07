@@ -1,10 +1,5 @@
 package algorithm.leetcode.tree;
 
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Stack;
-
 /**
  *
  * 给定一个二叉树，检查它是否是镜像对称的。

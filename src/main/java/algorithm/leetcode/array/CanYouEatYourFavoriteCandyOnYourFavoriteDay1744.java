@@ -11,8 +11,8 @@ public class CanYouEatYourFavoriteCandyOnYourFavoriteDay1744 {
 
         boolean[] res = new boolean[queries.length];
 
-        //所有种类前面的糖果数
-        int[] sum = new int[candiesCount.length];
+        //所有种类前面的糖果数(long类型是关键,int可能会溢出)
+        long[] sum = new long[candiesCount.length];
         //这里需要手工设置base
         sum[0] = candiesCount[0];
         for (int i = 1; i < candiesCount.length; i++) {
@@ -20,14 +20,13 @@ public class CanYouEatYourFavoriteCandyOnYourFavoriteDay1744 {
         }
 
         for (int i = 0; i < queries.length; i++) {
-            int favoriteType = queries[i][0];
-            int favoriteDay = queries[i][1];
-            int dailyCap = queries[i][2];
+            int[] query = queries[i];
+            int favoriteType = query[0], favoriteDay = query[1], dailyCap = query[2];
 
             //每天吃一颗的糖果数(也就是最少的糖果数)
             long eatMin = favoriteDay + 1;
             //最多能吃得糖果数
-            long eatMax = (favoriteDay + 1) * dailyCap;
+            long eatMax = (long)(favoriteDay + 1) * dailyCap;
             //在需要把前面的全部吃完，然后 +1
             long canMin = favoriteType == 0 ? 1 : sum[favoriteType -1] + 1;
             //能吃到的最大值

@@ -3,7 +3,6 @@ package algorithm.swordFingerOffer;
 import algorithm.leetcode.tree.TreeNode;
 import com.alibaba.fastjson.JSONObject;
 
-import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
