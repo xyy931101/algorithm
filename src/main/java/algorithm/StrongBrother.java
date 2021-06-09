@@ -21,6 +21,7 @@ public class StrongBrother {
     };
 
     public Integer getWays(int start1, int end1, int start2, int end2){
+
         return null;
     }
 }
