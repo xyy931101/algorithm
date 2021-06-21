@@ -21,7 +21,25 @@ public class StrongBrother {
     };
 
     public Integer getWays(int start1, int end1, int start2, int end2){
+        if (start1 < start2 || end1 < end2) return 0;
 
-        return null;
+        int[][] dp = new int[start2 - start1 + 1][end2 - end1 + 1];
+
+        for (int i = start1; i <= start2; i++) {
+            if (nums[i][0] != 0) dp[i][0] = 1;
+        }
+
+        for (int i = end1 + 1; i <= end2; i++) {
+            if (nums[0][i] != 0) dp[0][i] = 1;
+        }
+
+        for (int i = start1 + 1; i <= start2 ; i++) {
+            for (int j = end1 + 1; j <= end2; j++) {
+                if (dp[i][j] != 0)
+                    dp[i][j] = dp[i][j - 1] +  dp[i - 1][j];
+            }
+        }
+
+        return dp[start2 - start1][end2 - end1];
     }
 }
