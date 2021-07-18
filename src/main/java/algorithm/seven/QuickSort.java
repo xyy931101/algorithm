@@ -16,8 +16,6 @@ public class QuickSort {
 
     public static void main(String[] args) {
         int[] nums = MathUtil.generateRandomArray(100, 100);
-//        int[] nums = new int[]{87,38,88,69,4,81,45,49,65,23};
-//        int[] nums = new int[]{38,69,87,81,45,49,65,88};
         int[] copyOf = Arrays.copyOf(nums, nums.length);
         System.out.println(JSONObject.toJSONString(nums));
         quickSort(nums);
