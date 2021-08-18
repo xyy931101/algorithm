@@ -6,6 +6,9 @@ package algorithm.leetcode.dynamic;
  */
 public class TargetSum494 {
 
+
+
+
     public int findTargetSumWays(int[] nums, int target) {
         int sum = 0;
         for (int i = 0; i < nums.length; i++)
@@ -35,4 +38,39 @@ public class TargetSum494 {
         }
         return dp[len - 1][sum + target];
     }
+
+    //最优解
+    public static int findTargetSumWays2(int[] nums, int target) {
+        int sum = 0;
+        for (int i = 0; i < nums.length; i++)
+            sum += nums[i];
+        // 绝对值范围超过了sum的绝对值范围则无法得到
+        //如果target跟sum的奇偶性不一样的话,也是不OK
+        if(sum < target || ((target & 1) ^ (sum & 1)) != 0 ){
+            return 0;
+        }
+        if (((sum + target) & 1) != 0) return 0;
+
+        //因为正数之和g + 负数之和n = target -> g + t + sum = target + sum -> 2g = target + sum
+        //求整数和(target + sum)/2
+        int ans = 0;
+        int n = nums.length;
+        int s = (target + sum) >> 1;
+        int[][] dp = new int[n + 1][s + 1];
+        dp[0][0] = 1;
+        for (int i = 1; i <= n; i++) {
+            for (int j = 0; j <= s; j++) {
+                dp[i][j] = dp[i - 1][j];
+                if (j - nums[i - 1] >= 0) {
+                    dp[i][j] += dp[i - 1][j - nums[i - 1]];
+                }
+            }
+        }
+        return dp[n][s];
+    }
+
+    public static void main(String[] args) {
+        System.out.println(findTargetSumWays2(new int[]{1,1,1,1,1}, 3));
+    }
+
 }
