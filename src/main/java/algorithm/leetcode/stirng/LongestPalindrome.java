@@ -12,6 +12,8 @@ public class LongestPalindrome {
 
     public static void main(String[] args) {
         System.out.println(longestPalindrome("babad"));
+        byte a = Byte.MAX_VALUE;
+        System.out.println(a);
     }
 
     public static String longestPalindrome(String s) {
