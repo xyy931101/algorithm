@@ -42,6 +42,7 @@ public class MergeSort {
         while (p2 <= R) {
             help[i++] = arr[p2++];
         }
+        //再把原来的位置归位
         for (i = 0; i < help.length; i++) {
             arr[L + i] = help[i];
         }
