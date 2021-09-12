@@ -28,19 +28,19 @@ public class RabbitsInForest781 {
         //先排好序
         Arrays.sort(answers);
         int ans = 0;
-        int tmp = 0;
-        int sameCount = 0;
-        for (int i = 0; i < answers.length; i++) {
-            if (answers[i] == 0) {
-                ans++;
-            }else if (tmp != answers[i] || sameCount > tmp) {
-                ans = ans + answers[i] + 1;
-                tmp = answers[i];
+        int pre = answers[0];
+        int sameCount = 1;
+        for (int i = 1; i < answers.length; i++) {
+            if (answers[i] != pre) {
+                //向上取整
+                ans += (sameCount + pre)/(pre + 1) * (pre + 1);
+                pre = answers[i];
+                sameCount = 1;
             }else {
-                sameCount ++;
+                sameCount++;
             }
         }
-        return ans;
+        return ans + (sameCount + pre)/(pre + 1) * (pre + 1);
     }
 
 }
