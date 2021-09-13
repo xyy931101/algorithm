@@ -3,6 +3,8 @@ package algorithm.leetcode.array;
 import com.alibaba.fastjson.JSONObject;
 
 import java.util.Arrays;
+import java.util.Comparator;
+import java.util.Map;
 
 /**
  * 56. 合并区间
@@ -12,12 +14,12 @@ import java.util.Arrays;
 public class MergeIntervals56 {
 
     public static void main(String[] args) {
-        System.out.println(JSONObject.toJSONString(merge(new int[][]{{1,3},{2,6},{8,10},{15,18}})));
+        System.out.println(JSONObject.toJSONString(merge2(new int[][]{{1,3},{2,6},{8,10},{15,18}})));
     }
 
     public static int[][] merge(int[][] intervals) {
         //先按照结束时间排序
-        Arrays.sort(intervals, (v1, v2) -> v1[0] - v2[0]);
+        Arrays.sort(intervals, Comparator.comparingInt(v -> v[0]));
         int[][] res = new int[intervals.length][2];
         int idx = 0;
         int i = 0;
@@ -35,6 +37,27 @@ public class MergeIntervals56 {
             idx++;
         }
         return Arrays.copyOf(res, idx);
+    }
+
+
+    public static int[][] merge2(int[][] intervals) {
+        //先按照结束时间排序
+        Arrays.sort(intervals, Comparator.comparingInt(v -> v[0]));
+        int N = intervals.length;
+        int index = 0;
+        int newIndex = 0;
+        while (newIndex < N) {
+
+            int left = intervals[newIndex][0];
+            int right = intervals[newIndex][1];
+            while (newIndex < N -1 && intervals[newIndex + 1][0] <= right) {
+                right = Math.max(right, intervals[++newIndex][1]);
+            }
+            intervals[index++] = new int[]{left, right};
+            newIndex++;
+        }
+
+        return Arrays.copyOf(intervals, index);
     }
 
 }
