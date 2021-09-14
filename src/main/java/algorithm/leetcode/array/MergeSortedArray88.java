@@ -17,22 +17,19 @@ public class MergeSortedArray88 {
             return;
         }
 
-        int sum = m + n - 1;
-        m--;
-        n--;
-        while (sum >= 0 && m >= 0 && n >= 0) {
+        int index = nums1.length - 1;
+        while (m > 0 && n > 0) {
             if (nums1[m -1] > nums2[n - 1]) {
-                nums1[sum] = nums1[m--];
+                nums1[index--] = nums1[--m];
             }else {
-                nums1[sum] = nums2[n--];
+                nums1[index--] = nums2[--n];
             }
-            sum--;
         }
-        while (m >= 0) {
-            nums1[sum--] = nums1[m--];
+        while (m > 0) {
+            nums1[index--] = nums1[--m];
         }
-        while (n >= 0) {
-            nums1[sum--] = nums2[n--];
+        while (n > 0) {
+            nums1[index--] = nums2[--n];
         }
     }
 
