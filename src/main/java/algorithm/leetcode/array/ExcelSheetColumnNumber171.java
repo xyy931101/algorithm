@@ -15,6 +15,8 @@ public class ExcelSheetColumnNumber171 {
     public static int titleToNumber(String columnTitle) {
         int N = columnTitle.length();
 
+        String s = "";
+        s.intern();
         char[] chars = columnTitle.toCharArray();
         int ans = 0;
         for (int i = 0; i < N; i++) {
