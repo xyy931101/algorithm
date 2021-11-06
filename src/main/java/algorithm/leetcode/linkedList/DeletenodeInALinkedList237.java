@@ -12,3 +12,4 @@ public class DeletenodeInALinkedList237 {
         node.next = node.next.next;
     }
 }
+    
