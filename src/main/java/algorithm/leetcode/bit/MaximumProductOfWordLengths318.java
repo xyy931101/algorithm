@@ -18,7 +18,7 @@ public class MaximumProductOfWordLengths318 {
             for (char c : word.toCharArray()) {
                 msk |= 1 << (c - 'a');
             }
-            if (!map.containsKey(msk) || map.get(msk) > word.length()) {
+            if (!map.containsKey(msk) || map.get(msk) < word.length()) {
                  map.put(msk, word.length());
             }
         }
