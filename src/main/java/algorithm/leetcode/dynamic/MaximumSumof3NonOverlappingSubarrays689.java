@@ -9,6 +9,7 @@ public class MaximumSumof3NonOverlappingSubarrays689 {
 
     public static void main(String[] args) {
         System.out.println(maxSumOfThreeSubarrays(new int[]{1,2,1,2,6,7,5,1}, 2));
+        System.out.println(maxSumOfThreeSubarrays2(new int[]{1,2,1,2,1,2,1,2,1,2}, 2));
     }
 
 
@@ -65,6 +66,55 @@ public class MaximumSumof3NonOverlappingSubarrays689 {
             }
         }
         return new int[] {a, b, c};
+    }
+
+    //个人认为这个比较好
+    public static int[] maxSumOfThreeSubarrays2(int[] nums, int k) {
+        int len = nums.length;
+        int n = len - k + 1;
+        //计算每个子数组的和
+        int[] dp = new int[n];
+        int sum = 0;
+        for (int i = 0; i < len; i++){
+            sum = sum + nums[i];
+            if (i >= k) {
+                sum = sum - nums[i - k];
+            }
+            if (i >= k - 1) {
+                dp[i - k + 1] = sum;
+            }
+        }
+
+        //left right分别是左右最大的子数组的位置
+        int[] left = new int[n];
+        int[] right = new int[n];
+
+        int maxIndex = 0;
+        for (int i = 0; i < n; i++) {
+            if (dp[i] > dp[maxIndex]){
+                maxIndex = i;
+            }
+            left[i] = maxIndex;
+        }
+        maxIndex = n - 1;
+        for (int i = n - 1; i > 0; i--) {
+            if (dp[i] >= dp[maxIndex]) {
+                maxIndex = i;
+            }
+            right[i] = maxIndex;
+        }
+
+        int[] res = new int[3];
+        //滑动中间的一个子数组,分别向左边和右边获取最大的子数组
+        for (int i = k; i < n - k; i++) {
+            if (res[2] == 0 ||
+                    dp[res[0]] + dp[res[1]] + dp[res[2]] < dp[left[i - k]] + dp[i] + dp[right[i + k]]){
+                res[0] = left[i - k];
+                res[1] = i;
+                res[2] = right[i + k];
+            }
+        }
+        return res;
     }
 
 }
