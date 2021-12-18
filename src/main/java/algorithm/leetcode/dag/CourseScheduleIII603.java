@@ -1,4 +1,4 @@
-package algorithm.leetcode.array;
+package algorithm.leetcode.dag;
 
 import java.util.Arrays;
 import java.util.PriorityQueue;
