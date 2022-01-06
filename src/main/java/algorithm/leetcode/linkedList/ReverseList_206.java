@@ -26,7 +26,7 @@ public class ReverseList_206 {
             //下一次的当前节点是未翻转前的下一个节点
             cur = next;
         }
-        return prev.next;
+        return prev;
 
     }
 }
