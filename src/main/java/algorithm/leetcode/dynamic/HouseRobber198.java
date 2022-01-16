@@ -14,20 +14,16 @@ package algorithm.leetcode.dynamic;
 public class HouseRobber198 {
 
     public int rob(int[] nums) {
-        if (nums == null || nums.length < 1) {
-            return 0;
+        int prev = 0;
+        int curr = 0;
+        // 每次循环，计算“偷到当前房子为止的最大金额”
+        for (int i : nums) {
+            // 循环开始时，curr 表示 dp[k-1]，prev 表示 dp[k-2]
+            int temp = Math.max(curr, prev + i);
+            prev = curr;
+            curr = temp;
+            // 循环结束时，curr 表示 dp[k]，prev 表示 dp[k-1]
         }
-        if (nums.length == 1) {
-            return nums[0];
-        }
-
-        int[] dp = new int[nums.length];
-        dp[0] = nums[0];
-        dp[1] = Math.max(nums[0], nums[1]);
-        for (int i = 2; i < nums.length; i++) {
-            //每个都有偷与不偷的。如果偷，则最大值是前两个加上本身，不偷则是前一个
-            dp[i] = Math.max(dp[i - 1], dp[i -2] + nums[i]);
-        }
-        return dp[nums.length - 1];
+        return curr;
     }
 }
