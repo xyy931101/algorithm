@@ -1,7 +1,6 @@
 package algorithm.leetcode.dynamic;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -19,38 +18,29 @@ public class generateParentheses22 {
     }
 
     public static List<String> generateParenthesis(int n) {
-        LinkedList<String> list0 = new LinkedList<String>();
-        list0.add("");
-        if (n < 1) {
-            return list0;
-        }
-        List<List<String>> result = new ArrayList<>();
-        result.add(list0);
-        List<String> list1 = new ArrayList<>();
-        list1.add("()");
-        result.add(list1);
-        //"(" + 【i=p时所有括号的排列组合】 + ")" + 【i=q时所有括号的排列组合】
-        for (int i = 2; i <= n; i++) {
-            LinkedList<String> temp = new LinkedList<String>();
-            for (int j = 0; j < i; j++) {
-                //假设
-                List<String> leftRes = result.get(j);
 
-                List<String> rightRes = result.get(i - j -1);
+        List<String> res = new ArrayList<String>();
+        StringBuffer sb = new StringBuffer();
+        dfs(res, sb, 0, 0, n);
+        return res;
+    }
 
-                //其中为左边的可能排列的情况  也就是上面的p
-                for (String left : leftRes) {
-                    //右边可能出现的字符串  也就是上面的q
-                    for (String right :  rightRes) {
-                        String el = "(" + left + ")" + right;
-                        temp.add(el);
-                    }
-                }
-            }
-            //temp为所有可能出现的字符串
-            result.add(temp);
+    public static void dfs(List<String> res, StringBuffer sb, int left, int right, int max){
+        if(sb.length() == max << 1){
+            res.add(sb.toString());
+            return;
         }
-        return result.get(n);
+        if(left < max){
+            sb.append("(");
+            dfs(res, sb, left + 1, right, max);
+            sb.deleteCharAt(sb.length() - 1);
+        }
+
+        if(right < left){
+            sb.append(")");
+            dfs(res, sb, left, right +1, max);
+            sb.deleteCharAt(sb.length() - 1);
+        }
     }
 
 }
