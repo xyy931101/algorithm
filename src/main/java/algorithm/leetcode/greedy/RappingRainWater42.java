@@ -1,6 +1,8 @@
 package algorithm.leetcode.greedy;
 
+import java.util.Comparator;
 import java.util.LinkedList;
+import java.util.PriorityQueue;
 
 /**
  * @author: xiongyayun
@@ -13,6 +15,7 @@ public class RappingRainWater42 {
     }
 
     public static int trap(int[] height) {
+        PriorityQueue<int[]> queue = new PriorityQueue<>((a,b) -> b[1] - a[1]);
         int len = height.length;
         LinkedList<Integer> deque = new LinkedList();
         int res = 0;

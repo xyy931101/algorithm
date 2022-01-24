@@ -1,5 +1,7 @@
 package algorithm.leetcode.tree;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Stack;
 
 /**
@@ -41,4 +43,22 @@ public class ConstructBinarySearchTreeFromPreorderTraversal1008 {
         return cur;
     }
 
+    int [] preorder = new int[1];
+    Map<Integer, Integer> hash = new HashMap<>();
+    private TreeNode buildTree(int preLeft, int preRight, int inLeft, int inRight) {
+        // 因为是递归调用的方法，按照国际惯例，先写递归终止条件
+        if (preLeft > preRight || inLeft > inRight) {
+            return null;
+        }
+        // 先序遍历的起点元素很重要
+        int pivot = preorder[preLeft];
+        TreeNode root = new TreeNode(pivot);
+        int pivotIndex = hash.get(pivot);
+        int size = pivotIndex - inLeft;
+        root.left = buildTree(preLeft + 1, preLeft + size,
+                inLeft, pivotIndex - 1);
+        root.right = buildTree(size + preLeft + 1, preRight,
+                pivotIndex + 1, inRight);
+        return root;
+    }
 }
