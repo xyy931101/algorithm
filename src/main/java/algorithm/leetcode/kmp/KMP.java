@@ -6,6 +6,10 @@ package algorithm.leetcode.kmp;
  */
 public class KMP {
 
+    public static void main(String[] args) {
+        System.out.println(getNextArray(new char[]{'a', 'a', 'a', 'a', 'b', 'b', 'b'}));
+    }
+
     public static int getIndexOf(String s1, String s2) {
         if (s1 == null || s2 == null || s2.length() < 1 || s1.length() < s2.length()) {
             return -1;
