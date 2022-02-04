@@ -54,4 +54,22 @@ public class KMP {
         }
         return next;
     }
+
+
+    public static int[] getNextArray1(char[] str2) {
+        int[] res = new int[str2.length];
+        res[0] = -1;
+        res[1] = 0;
+        int i = 2, cn = 0;
+        while (i < str2.length){
+            if (str2[i - 1] == str2[cn]){
+                res[i++] = ++cn;
+            }else if(cn > 0){
+                cn = res[cn];
+            }else {
+                res[i++] = 0;
+            }
+        }
+        return res;
+    }
 }
