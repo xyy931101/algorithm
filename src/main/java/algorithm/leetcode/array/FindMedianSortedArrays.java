@@ -13,37 +13,42 @@ public class FindMedianSortedArrays {
         System.out.println(findMedianSortedArrays(nums1, nums2));
     }
 
-    public static double findMedianSortedArrays(int[] nums1, int[] nums2) {
-        if(nums1 == null || nums2 == null){
-            return 0.0;
+    public static double findMedianSortedArrays(int[] A, int[] B) {
+        int m = A.length;
+        int n = B.length;
+        if (m > n) {
+            return findMedianSortedArrays(B,A); // 保证 m <= n
         }
-        int s1 = 0, s2 = 0,i = 0;
-        int l1 = nums1.length;
-        int l2 = nums2.length;
-        int sl = l2 + l1;
-        int[] sum = new int[sl];
-        while (s1 < l1 && s2 < l2){
-            if(nums1[s1] < nums2[s2]){
-                sum[i] = nums1[s1];
-                s1++;
-            }else {
-                sum[i] = nums2[s2];
-                s2++;
+        int iMin = 0, iMax = m;
+        while (iMin <= iMax) {
+            int i = (iMin + iMax) / 2;
+            int j = (m + n + 1) / 2 - i;
+            if (j != 0 && i != m && B[j-1] > A[i]){ // i 需要增大
+                iMin = i + 1;
+            }else if (i != 0 && j != n && A[i-1] > B[j]) { // i 需要减小
+                iMax = i - 1;
+            }else { // 达到要求，并且将边界条件列出来单独考虑
+                int maxLeft = 0;
+                if (i == 0) {
+                    maxLeft = B[j-1];
+                }else if (j == 0) {
+                    maxLeft = A[i-1];
+                }else {
+                    maxLeft = Math.max(A[i-1], B[j-1]);
+                }
+                // 奇数的话不需要考虑右半部分
+                if ( (m + n) % 2 == 1 ) {
+                    return maxLeft;
+                }
+
+                int minRight = 0;
+                if (i == m) { minRight = B[j]; }
+                else if (j == n) { minRight = A[i]; }
+                else { minRight = Math.min(B[j], A[i]); }
+
+                return (maxLeft + minRight) / 2.0; //如果是偶数的话返回结果
             }
-            i++;
         }
-        for (int j = s1; j < l1; j++) {
-            sum[i] = nums1[j];
-            i++;
-        }
-        for (int j = s2; j < l2; j++) {
-            sum[i] = nums2[j];
-            i++;
-        }
-        if(sum.length % 2 == 0){
-            return (sum[sl/2 -1] + sum[sl/2]) /2.0;
-        }else{
-            return sum[sl/2];
-        }
+        return 0.0;
     }
 }

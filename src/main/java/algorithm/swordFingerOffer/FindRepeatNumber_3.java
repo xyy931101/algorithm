@@ -1,6 +1,8 @@
 package algorithm.swordFingerOffer;
 
+import java.util.Deque;
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.Set;
 
 /**
@@ -15,17 +17,25 @@ import java.util.Set;
  */
 public class FindRepeatNumber_3 {
 
-    public int findRepeatNumber(int[] nums) {
+    public static void main(String[] args) {
+        System.out.println(findRepeatNumber(new int[]{2, 2, 1, 0, 4, 5, 3}));
+    }
+
+    public static int findRepeatNumber(int[] nums) {
         //用于存放数组中每个数字的重复次数
-        Set<Integer> set = new HashSet<Integer>();
-        int repeat = -1;
-        for (int num : nums) {
-            if (!set.add(num)) {
-                repeat = num;
-                break;
+        Deque deque = new LinkedList();
+        int i = 0;
+        while(i < nums.length) {
+            if(nums[i] == i) {
+                i++;
+                continue;
             }
+            if(nums[nums[i]] == nums[i]) return nums[i];
+            int tmp = nums[i];
+            nums[i] = nums[tmp];
+            nums[tmp] = tmp;
         }
-        return repeat;
+        return -1;
 
     }
 }

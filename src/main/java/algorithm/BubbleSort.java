@@ -1,5 +1,8 @@
 package algorithm;
 
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+
 /**
  * 冒泡排序
  * @Author: Xiongyy
@@ -10,6 +13,8 @@ package algorithm;
  */
 public class BubbleSort {
     public static void main(String[] args) {
+        ScheduledExecutorService scheduledExecutorService = Executors.newScheduledThreadPool(1);
+        scheduledExecutorService.submit(() ->{});
         int [] arr = new int[]{5, 3, 6, 8, 9, 4, 1, 2, 7};
 
         for (int i = 0; i < arr.length -1; i++) {
