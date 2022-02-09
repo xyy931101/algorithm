@@ -42,10 +42,13 @@ public class FindMedianSortedArrays {
                 }
 
                 int minRight = 0;
-                if (i == m) { minRight = B[j]; }
-                else if (j == n) { minRight = A[i]; }
-                else { minRight = Math.min(B[j], A[i]); }
-
+                if (i == m) {
+                    minRight = B[j];
+                }else if (j == n) {
+                    minRight = A[i];
+                }else {
+                    minRight = Math.min(B[j], A[i]);
+                }
                 return (maxLeft + minRight) / 2.0; //如果是偶数的话返回结果
             }
         }
