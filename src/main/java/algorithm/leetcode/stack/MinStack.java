@@ -39,7 +39,6 @@ public class MinStack {
         // 关键 3：data 一定得 pop()
         if (!data.isEmpty()) {
             // 注意：声明成 int 类型，这里完成了自动拆箱，从 Integer 转成了 int，因此下面的比较可以使用 "==" 运算符
-            // 参考资料：https://www.cnblogs.com/GuoYaxiang/p/6931264.html
             // 如果把 top 变量声明成 Integer 类型，下面的比较就得使用 equals 方法
             int top = data.pop();
             if(top == helper.peek()){
