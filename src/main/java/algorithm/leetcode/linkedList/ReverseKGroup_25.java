@@ -1,7 +1,5 @@
 package algorithm.leetcode.linkedList;
 
-import java.util.List;
-
 /**
  * 给你一个链表，每 k 个节点一组进行翻转，请你返回翻转后的链表。
  *
@@ -19,6 +17,10 @@ import java.util.List;
  * 佛祖保佑             永无BUG
  */
 public class ReverseKGroup_25 {
+
+    public static void main(String[] args) {
+        System.out.println(reverseKGroup2(ListNode.getHead(), 2));
+    }
 
     public ListNode reverseKGroup(ListNode head, int k) {
         ListNode hair = new ListNode(0);
@@ -61,5 +63,38 @@ public class ReverseKGroup_25 {
             p = nex;
         }
         return new ListNode[]{tempRight, tempLeft};
+    }
+
+    public static ListNode reverseKGroup2(ListNode head, int k) {
+        ListNode dummy = new ListNode(0, head);
+        ListNode pre = dummy, tail = dummy;
+        while(tail.next != null){
+            for(int i = 0; i < k && tail != null; i++){
+                tail = tail.next;
+            }
+            if(tail == null){
+                break;
+            }
+            ListNode start = pre.next;
+            ListNode next = tail.next;
+            tail.next = null;
+            pre.next = reverse(start);
+            start.next = next;
+            pre = start;
+            tail = start;
+        }
+        return dummy.next;
+    }
+
+    public static ListNode reverse(ListNode head){
+        ListNode pre = null;
+        ListNode curr = head;
+        while(curr != null){
+            ListNode next = curr.next;
+            curr.next = pre;
+            pre = curr;
+            curr = next;
+        }
+        return pre;
     }
 }
