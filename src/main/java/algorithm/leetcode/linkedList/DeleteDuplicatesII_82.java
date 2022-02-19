@@ -19,29 +19,23 @@ public class DeleteDuplicatesII_82 {
         if(head == null || head.next == null){
             return head;
         }
-        //先构建一个前节点,方便后续的返回
-        ListNode pre = new ListNode(0, head);
-        Set<Integer> nodes = new HashSet<>();
-        Set<Integer> duplicatesNodes = new HashSet<>();
-
-        while (head != null){
-            if(nodes.contains(head.val)){
-                duplicatesNodes.add(head.val);
-            }
-            nodes.add(head.val);
-        }
-
-        //消除所有重复节点
-        ListNode node = pre;
-        while (node.next != null){
-            if(duplicatesNodes.contains(node.next.val)){
-                node.next = node.next.next;
-            }else{
-                node = node.next;
+        ListNode dummy = new ListNode(0, head);
+        ListNode slow = dummy, fast = head.next;
+        while(fast != null){
+            if(fast.val != slow.next.val){
+                fast = fast.next;
+                slow = slow.next;
+            }else {
+                while(fast != null && slow.next.val == fast.val) {
+                    fast = fast.next;
+                }
+                slow.next = fast;
+                if(fast != null){
+                    fast = fast.next;
+                }
             }
         }
-
-        return pre.next;
+        return dummy.next;
     }
 
 }
