@@ -1,4 +1,4 @@
-package algorithm.swordFingerOffer;
+    package algorithm.swordFingerOffer;
 
 /**
  * @Author: Xiongyy
@@ -27,7 +27,7 @@ public class MergeTwoLists_25 {
             }
             pre = pre.next;
         }
-            pre.next = l1.next == null ? l2: l1;
+        pre.next = l1.next == null ? l2: l1;
         return temp.next;
     }
 }
