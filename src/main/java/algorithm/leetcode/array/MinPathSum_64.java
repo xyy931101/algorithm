@@ -12,35 +12,26 @@ package algorithm.leetcode.array;
 public class MinPathSum_64 {
 
     public static void main(String[] args) {
-        int[][] grid = new int[][]{{1}};
+        int[][] grid = new int[][]{{1,3,1},{1,5,1},{4,2,1}};
         System.out.println(minPathSum(grid));
 
     }
 
     public static int minPathSum(int[][] grid) {
-        if (grid == null || grid.length == 0 || grid[0].length == 0) {
-            return 0;
+        int m = grid.length;
+        int n = grid[0].length;
+        int[] dp = new int[n];
+        dp[0] = grid[0][0];
+        for(int i = 1; i < n; i++){
+            dp[i] = dp[i - 1] + grid[0][i];
         }
-        int rows = grid.length;
-        int cells = grid[0].length;
-
-        int[][] result = new int[rows][cells];
-
-        for (int i = 0; i < rows; i++) {
-            for (int j = 0; j < cells; j++) {
-                if (i == 0 && j == 0) {
-                    result[i][j] = grid[i][j];
-                }else if (i == 0) {
-                    result[i][j] = result[i][j - 1] + grid[i][j];
-                }else if (j == 0) {
-                    result[i][j] = result[i - 1][j] + grid[i][j];
-                }else {
-                    result[i][j] = Math.min(result[i - 1][j] + grid[i][j], result[i][j -1] + grid[i][j]);
-                }
-
+        for(int i = 1; i < m; i++){
+            dp[0] += grid[i][0];
+            for(int j = 1; j < n; j++){
+                dp[j] = Math.min(dp[j - 1], dp[j]) + grid[i][j];
             }
         }
-        return result[rows -1][cells - 1];
+        return dp[n - 1];
     }
 
 }

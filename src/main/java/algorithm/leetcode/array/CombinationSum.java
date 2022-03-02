@@ -1,6 +1,8 @@
 package algorithm.leetcode.array;
 
 import java.util.ArrayList;
+import java.util.Deque;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -19,28 +21,31 @@ import java.util.List;
  */
 public class CombinationSum {
 
-    List<List<Integer>> ans = new ArrayList<>();
-    public List<List<Integer>> combinationSum(int[] candidates, int target) {
-        List<Integer> combine = new ArrayList<Integer>();
-        process(candidates, combine, 0, target);
-        return ans;
+    public static void main(String[] args) {
+        CombinationSum c = new CombinationSum();
+        System.out.println(c.combinationSum(new int[]{2, 3, 6, 7}, 7));;
     }
 
-    private void process(int[] candidates, List<Integer> combine, int index, int target) {
-        if (index == candidates.length) {
+    List<List<Integer>> res = new ArrayList<List<Integer>>();
+    public List<List<Integer>> combinationSum(int[] candidates, int target) {
+        dfs(candidates, target, new LinkedList<>(), 0);
+        return res;
+    }
+
+    public void dfs(int[] candidates, int target, Deque<Integer> path, int index) {
+        if(target < 0 || index >= candidates.length) return;
+        if(target == 0) {
+            res.add(new ArrayList(path));
             return;
         }
-        if (target == 0) {
-            ans.add(new ArrayList<Integer>(combine));
-            return;
-        }
-        // 直接跳过(先直接递归找到最后的成员)
-        process(candidates, combine, index + 1, target);
-        if (target >= candidates[index]) {
-            //如果还能继续加的话,先把当前元素加上
-            combine.add(candidates[index]);
-            process(candidates, combine, index, target - candidates[index]);
-            combine.remove(combine.size() - 1);
+        for(int i = index; i < candidates.length; i++){
+            int num = candidates[i];
+            if (target - num < 0) {
+                break;
+            }
+            path.addLast(num);
+            dfs(candidates, target - num, path, i);
+            path.removeLast();
         }
     }
 }
