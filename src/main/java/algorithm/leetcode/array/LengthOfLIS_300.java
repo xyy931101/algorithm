@@ -1,5 +1,7 @@
 package algorithm.leetcode.array;
 
+import java.util.Arrays;
+
 /**
  * 给你一个整数数组 nums ，找到其中最长严格递增子序列的长度。
  *
@@ -11,7 +13,28 @@ package algorithm.leetcode.array;
  * 佛祖保佑             永无BUG
  */
 public class LengthOfLIS_300 {
-    public int lengthOfLIS(int[] nums) {
+
+    public static void main(String[] args) {
+        System.out.println(lengthOfLIS(new int[]{10,9,2,5,3,7,101,18}));
+    }
+
+    public static int lengthOfLIS(int[] nums) {
+        int n = nums.length;
+        int[] dp = new int[n];
+        Arrays.fill(dp, 1);
+        int ans = 1;
+        for(int i = 1; i < n; i++){
+            for(int j = 0; j < i; j++){
+                if(nums[i] > nums[j]){
+                    dp[i] = Math.max(dp[i], dp[j] + 1);
+                }
+            }
+            ans = Math.max(ans, dp[i]);
+        }
+        return ans;
+    }
+
+    /*public int lengthOfLIS(int[] nums) {
         if(nums == null){
             return 0;
         }
@@ -27,5 +50,5 @@ public class LengthOfLIS_300 {
             }
         }
         return ans;
-    }
+    }*/
 }

@@ -10,40 +10,39 @@ package algorithm.leetcode.array;
  */
 public class FindKthLargest {
 
-    public static int[] nums = new int[]{3,2,3,1,2,4,5,5,6};
+    public static int[] nums = new int[]{5,2,4,1,3,6,0};
 
     public static void main(String[] args) {
-        int kthLargest = findKthLargest(nums, 9);
+        int kthLargest = findKthLargest(nums, 4);
         System.out.println(kthLargest);
     }
 
     public static int findKthLargest(int[] nums, int k) {
         int n = nums.length;
-        return quickSort(nums, n - k, 0, n - 1);
+        return quickSort(nums, 0, n - 1, n - k);
     }
 
-    public static int quickSort(int[] nums, int k, int start, int end){
+    public static int quickSort(int[] nums, int start, int end, int index){
         if(start >= end){
             return nums[end];
         }
         int pivot = nums[end], left = start, right = end;
         while(left < right){
-            while(left <right && nums[left] <= pivot){
+            while(left < right && nums[left] <= pivot){
                 left++;
             }
-            nums[right] = nums[left];
+            nums[right--] = nums[left];
             while(left < right && nums[right] >= pivot){
                 right--;
             }
-            nums[left] = nums[right];
+            nums[left++] = nums[right];
         }
-        nums[left] = pivot;
-        if(left == k){
-            return nums[left];
-        }else if (left < k){
-            return quickSort(nums, k, left + 1, end);
+        if(left == index){
+            return pivot;
+        }else if(left < index){
+            return quickSort(nums, left + 1, end, index);
         }else {
-            return quickSort(nums, k, start, left - 1);
+            return quickSort(nums, start, left - 1, index);
         }
     }
 

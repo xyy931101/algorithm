@@ -1,5 +1,7 @@
 package algorithm.leetcode.stirng;
 
+import java.util.Arrays;
+
 /**
  * 3. 无重复字符的最长子串
  * @author: xiongyayun
@@ -7,25 +9,26 @@ package algorithm.leetcode.stirng;
  */
 public class LongestSubstringWithoutRepeatingCharacters3 {
 
+    public static void main(String[] args) {
+        System.out.println(lengthOfLongestSubstring("pwwkew"));
+    }
 
-    public int lengthOfLongestSubstring(String s) {
+    public static int lengthOfLongestSubstring(String s) {
         if (s == null || s.length() == 0) return 0;
 
         char[] str = s.toCharArray();
         int[] map = new int[256];
-        //因为第一个是为0的(也就是说  无论如何,第一个字符都是在0位的)
-        for (int i = 1; i < 256; i++) {
-            map[i] = -1;
+        Arrays.fill(map, -1);
+        int res = 0, left = 0;
+        for(int i = 0; i < str.length; i++){
+            char c = str[i];
+            if(map[c] != -1){
+                left = Math.max(map[c] + 1, left);
+            }
+            map[c] = i;
+            res = Math.max(res, i - left + 1);
         }
-        int N = str.length;
-        int ans = 1;
-        int pre = 1;
-        for (int i = 1; i < N; i++) {
-            pre = Math.min(pre, i - map[str[i]]);
-            ans = Math.max(pre, ans);
-            map[str[i]] = i;
-        }
-        return ans;
+        return res;
     }
 
 }

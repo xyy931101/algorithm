@@ -1,6 +1,7 @@
 package algorithm.leetcode.greedy;
 
 import java.util.Comparator;
+import java.util.Deque;
 import java.util.LinkedList;
 import java.util.PriorityQueue;
 
@@ -15,20 +16,16 @@ public class RappingRainWater42 {
     }
 
     public static int trap(int[] height) {
-        PriorityQueue<int[]> queue = new PriorityQueue<>((a,b) -> b[1] - a[1]);
-        int len = height.length;
-        LinkedList<Integer> deque = new LinkedList();
+        Deque<Integer> stack = new LinkedList<Integer>();
         int res = 0;
-        for(int i = 0; i < len; i++){
-            if(deque.isEmpty() || height[i] <= height[deque.peekLast()]){
-                deque.push(i);
-            }else {
-                int h = height[deque.pollLast()];
-                while(!deque.isEmpty()) {
-                    res += h - height[deque.poll()];
-                }
-                deque.push(i);
+        for(int i = 0; i < height.length; i++){
+            while(!stack.isEmpty() && height[i] > height[stack.peek()]){
+                int right = stack.poll();
+                if(stack.isEmpty()) break;
+                int left = stack.peek();
+                res += (Math.min(height[left], height[i]) - height[right]) * (i - left - 1);
             }
+            stack.push(i);
         }
         return res;
     }
