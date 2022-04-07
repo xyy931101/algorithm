@@ -53,8 +53,8 @@ class ListNode {
         head2.next = head3;
         ListNode head4 = new ListNode(4);
         head3.next = head4;
-//        ListNode head5 = new ListNode(5);
-//        head4.next = head5;
+        ListNode head5 = new ListNode(5);
+        head4.next = head5;
 
         return head;
     }

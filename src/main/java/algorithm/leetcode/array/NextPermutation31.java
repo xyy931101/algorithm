@@ -17,24 +17,24 @@ import java.util.Arrays;
 public class NextPermutation31 {
 
         public void nextPermutation(int[] nums) {
-            for (int i = nums.length - 1; i > 0 ; i--) {
-                if (nums[i] > nums[i - 1]) {
-                    Arrays.sort(nums, i, nums.length);
-                    for (int j = i; j < nums.length; j++) {
-                        if (nums[j] > nums[i - 1]) {
-                            swap(nums, i - 1, j);
+            int len = nums.length;
+            for(int i = len - 1; i > 0; i--){
+                //找到第一个从后往前是递减的数据
+                if(nums[i] > nums[i - 1]){
+                    //排序后面的数组数据
+                    Arrays.sort(nums, i, len);
+                    //找到第一个比i - 1大的数字,然后跟i - 1位置交换
+                    for(int j = i; j < len; j++){
+                        if(nums[j] > nums[i - 1]){
+                            int temp = nums[i - 1];
+                            nums[i - 1] = nums[j];
+                            nums[j] = temp;
                             return;
                         }
                     }
                 }
             }
-            //走到这一步则证明是递增的数组
+            //本身就是一个递减数据,返回排序后的就行了
             Arrays.sort(nums);
-        }
-
-        public void swap(int[] nums, int left, int right){
-            int k = nums[left];
-            nums[left] = nums[right];
-            nums[right] = k;
         }
 }
