@@ -7,6 +7,27 @@ package algorithm.leetcode.dynamic;
  */
 public class MaximalSquare {
 
+
+    public static void main(String[] args) {
+        char[][] matrix = new char[][]{{'1','0','1','0'},
+                                       {'1','0','1','1'},
+                                       {'1','0','1','1'},
+                                       {'1','1','1','1'}};
+        if(matrix == null || matrix.length <= 0 || matrix[0].length <= 0) System.out.println("0");
+        int maxSide  = 0, m = matrix.length, n = matrix[0].length;
+        int[] dp = new int[n + 1];
+
+        for(int i = 0; i < m; i++){
+            for(int j = 0; j < n; j++){
+                if(matrix[i][j] == '1'){
+                    dp[j + 1] = Math.min(dp[j], dp[j + 1]) + 1;
+                    maxSide = Math.max(dp[j +1], maxSide);
+                }else dp[j + 1] = 0;
+            }
+        }
+        System.out.println( maxSide * maxSide);
+    }
+
     public int maximalSquare(char[][] matrix) {
         //边界值判断
         if (matrix == null || matrix.length == 0 || matrix[0].length == 0) return 0;

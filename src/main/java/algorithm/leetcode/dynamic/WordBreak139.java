@@ -2,7 +2,6 @@ package algorithm.leetcode.dynamic;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
 
 /**
  * 139. 单词拆分
@@ -59,6 +58,7 @@ public class WordBreak139 {
                 if (dp[i]) break;
             }
         }
+
         return dp[0];
     }
 
