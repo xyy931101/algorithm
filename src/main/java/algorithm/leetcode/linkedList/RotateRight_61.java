@@ -18,33 +18,27 @@ public class RotateRight_61 {
     }
 
     public static ListNode rotateRight(ListNode head, int k) {
-        if (head == null || k == 0 || head.next == null) {
-            return head;
+        if(k == 0 || head == null || head.next == null) return head;
+        ListNode slow = head, fast = head;
+        ListNode iter = head;
+        int n = 1;
+        while (iter.next != null) {
+            iter = iter.next;
+            n++;
         }
-
-        ListNode fast = head,slow = head;
-        //1.先走K步
-        while (k != 0){
-            if (fast.next == null) {
-                fast = head;
-            }else {
-                fast = fast.next;
-            }
+        k = k % n;
+        while(k > 0){
+            fast = fast.next;
             k--;
         }
-        if (fast == head) {
-            return head;
-        }
-        //2.快慢指针一起走,当快指针走到尾节点结束
-        while (fast.next != null) {
+        while(fast.next != null) {
             fast = fast.next;
             slow = slow.next;
         }
-        ListNode newHead = slow.next;
-        slow.next = null;
-
         fast.next = head;
-        return newHead;
+        head = slow.next;
+        slow.next = null;
+        return head;
     }
 
 }
