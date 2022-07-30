@@ -1,5 +1,6 @@
 package algorithm.my;
 
+import java.util.Comparator;
 import java.util.HashMap;
 
 /**
@@ -19,6 +20,7 @@ public class LRUCache {
         System.out.println(lru.get(1));;
         System.out.println(lru.get(3));
         System.out.println(lru.get(4));
+
     }
 
     //最大容量
