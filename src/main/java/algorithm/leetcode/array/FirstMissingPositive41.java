@@ -8,7 +8,25 @@ package algorithm.leetcode.array;
 public class FirstMissingPositive41 {
 
     public static void main(String[] args) {
-        System.out.println(firstMissingPositive(new int[]{2, 1}));
+        System.out.println(firstMissingPositive2(new int[]{1}));
+    }
+
+
+    public static int firstMissingPositive2(int[] nums) {
+        int len = nums.length;
+        for(int i = 0; i < len; i++){
+            while(nums[i] != i + 1 && nums[i] <= len && nums[i] > 0){
+                int temp = nums[nums[i] - 1];
+                nums[nums[i] - 1] = nums[i];
+                nums[i] = temp;
+            }
+        }
+        for(int i = 0; i < len; i++){
+            if(nums[i] != i + 1){
+                return i + 1;
+            }
+        }
+        return len + 1;
     }
 
     public static int firstMissingPositive(int[] nums) {

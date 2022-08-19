@@ -15,6 +15,10 @@ import java.util.Set;
  */
 public class DeleteDuplicatesII_82 {
 
+    public static void main(String[] args) {
+        System.out.println("1".substring(0, 1));
+    }
+
     public ListNode deleteDuplicates(ListNode head) {
         if(head == null || head.next == null){
             return head;
