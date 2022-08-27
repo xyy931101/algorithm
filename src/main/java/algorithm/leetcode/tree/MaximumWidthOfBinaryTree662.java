@@ -1,8 +1,6 @@
 package algorithm.leetcode.tree;
 
-import java.util.Deque;
-import java.util.LinkedList;
-import java.util.Queue;
+import java.util.*;
 
 /**
  * 662. 二叉树最大宽度
@@ -13,6 +11,23 @@ public class MaximumWidthOfBinaryTree662 {
 
     public static void main(String[] args) {
         System.out.println(widthOfBinaryTree(TreeNode.getHead()));
+    }
+    //记录每层最左的下标
+    public Map<Integer, Integer> map = new HashMap<>();
+    private int ans = 0;
+
+    //这个是最好理解的
+    public int widthOfBinaryTree1(TreeNode root) {
+        dfs(root, 1, 0);
+        return  ans;
+    }
+
+    private void dfs(TreeNode root, int index, int depth) {
+        if (root == null) return;
+        if (!map.containsKey(depth)) map.put(depth, index);
+        ans = Math.max(ans, index - map.get(depth) + 1);
+        dfs(root.left, index << 1, depth + 1);
+        dfs(root.right, index << 1 | 1, depth + 1);
     }
 
     public static int widthOfBinaryTree(TreeNode root) {
