@@ -1,8 +1,5 @@
 package algorithm.leetcode.array;
 
-import java.util.LinkedList;
-import java.util.List;
-
 /**
  * @author: xiongyayun
  * @date: 2021/6/29 11:44 下午
@@ -13,7 +10,6 @@ public class ExcelSheetColumnTitle168 {
         if (columnNumber <= 0) {
             return null;
         }
-
         StringBuilder sb = new StringBuilder();
 
         while(columnNumber != 0){
