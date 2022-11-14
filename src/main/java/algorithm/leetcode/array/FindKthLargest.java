@@ -19,31 +19,22 @@ public class FindKthLargest {
 
     public static int findKthLargest(int[] nums, int k) {
         int n = nums.length;
-        return quickSort(nums, 0, n - 1, n - k);
+        return quickSort(nums, n - k, 0, n - 1);
     }
 
-    public static int quickSort(int[] nums, int start, int end, int index){
-        if(start >= end){
-            return nums[end];
-        }
-        int pivot = nums[end], left = start, right = end;
+    public static int quickSort(int[] nums, int index, int start, int end){
+        int left = start, right = end;
+        int pivot = nums[end];
         while(left < right){
-            while(left < right && nums[left] <= pivot){
-                left++;
-            }
+            while(left < right && nums[left] <= pivot) left++;
             nums[right--] = nums[left];
-            while(left < right && nums[right] >= pivot){
-                right--;
-            }
-            nums[left++] = nums[right];
+            while(left < right && nums[right] >= pivot) right--;
+            nums[left] = nums[right];
         }
-        if(left == index){
-            return pivot;
-        }else if(left < index){
-            return quickSort(nums, left + 1, end, index);
-        }else {
-            return quickSort(nums, start, left - 1, index);
-        }
+        nums[left] = pivot;
+        if(left == index) return nums[left];
+        else if(left < index) return quickSort(nums, index, left + 1, end);
+        else return quickSort(nums, index, start, left - 1);
     }
 
 }
