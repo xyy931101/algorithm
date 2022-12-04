@@ -18,7 +18,7 @@ import java.util.List;
 public class ThreeSum_15 {
 
     public static void main(String[] args) {
-        System.out.println(threeSum2(new int[]{1, -1, -1, 0}));
+        System.out.println(threeSum3(new int[]{-1,0,1,2,-1,-4}));
     }
 
     List<List<Integer>> ans = new ArrayList<>();
@@ -90,5 +90,33 @@ public class ThreeSum_15 {
             }
         }
         return ans;
+    }
+
+    public static List<List<Integer>> threeSum3(int[] nums) {
+        //如果数组长度小于3,则就返回空数组
+        if(nums == null || nums.length < 3){
+            return Collections.emptyList();
+        }
+        Arrays.sort(nums);
+        List<List<Integer>> res = new ArrayList<List<Integer>>();
+        for(int i = 0; i < nums.length - 2; i++){
+            int one = nums[i];
+            if(one > 0) break;
+            if(i > 0 && one == nums[i - 1]) continue;
+            int left = i + 1, right = nums.length - 1;
+            int target = - one;
+            while(left < right){
+                int sum = nums[left] + nums[right];
+                if(sum == target){
+                    res.add(Arrays.asList(one, nums[left], nums[right]));
+                    while(left < right && nums[left] == nums[left + 1]) left++;
+                    while(left < right && nums[right] == nums[right - 1]) right--;
+                    left++;
+                    right--;
+                }else if(sum < target) left++;
+                else right--;
+            }
+        }
+        return res;
     }
 }
