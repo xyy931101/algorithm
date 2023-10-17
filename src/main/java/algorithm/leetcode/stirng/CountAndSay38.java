@@ -22,7 +22,7 @@ public class CountAndSay38 {
             }
             ans = cur.toString();
         }
-        ans.toCharArray()
+        ans.toCharArray();
         return ans;
     }
 }
